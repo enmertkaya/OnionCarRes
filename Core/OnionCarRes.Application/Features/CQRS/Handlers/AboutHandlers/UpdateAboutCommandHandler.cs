@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UdemyCarBook.Application.Features.CQRS.Commands.AboutCommands;
-using UdemyCarBook.Application.Interfaces;
-using UdemyCarBook.Domain.Entities;
+using OnionCarRes.Application.Features.CQRS.Commands.AboutCommands;
+using OnionCarRes.Application;
+using OnionCarRes.Domain.Entities;
 
-namespace UdemyCarBook.Application.Features.CQRS.Handlers.AboutHandlers
+namespace OnionCarRes.Application.Features.CQRS.Handlers.AboutHandlers
 {
     public class UpdateAboutCommandHandler
     {
