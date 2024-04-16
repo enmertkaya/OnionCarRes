@@ -1,5 +1,7 @@
 using OnionCarRes.Application;
 using OnionCarRes.Application.Features.CQRS.Handlers.AboutHandlers;
+using OnionCarRes.Application.Features.CQRS.Handlers.BannerHandlers;
+using OnionCarRes.Application.Features.CQRS.Handlers.BrandHandlers;
 using OnionCarRes.Persistence.Context;
 using OnionCarRes.Persistence.Repositories;
 
@@ -20,6 +22,18 @@ builder.Services.AddScoped<GetAboutByIdQueryHandler>();
 builder.Services.AddScoped<CreateAboutCommandHandler>();
 builder.Services.AddScoped<UpdateAboutCommandHandler>();
 builder.Services.AddScoped<RemoveAboutCommandHandler>();
+
+builder.Services.AddScoped<GetBannerQueryHandler>();
+builder.Services.AddScoped<GetBannerByIdQueryHandler>();
+builder.Services.AddScoped<CreateBannerCommandHandler>();
+builder.Services.AddScoped<UpdateBannerCommandHandler>();
+builder.Services.AddScoped<RemoveBannerCommandHandler>();
+
+builder.Services.AddScoped<GetBrandQueryHandler>();
+builder.Services.AddScoped<GetBrandByIdQueryHandler>();
+builder.Services.AddScoped<CreateBrandCommandHandler>();
+builder.Services.AddScoped<UpdateBrandCommandHandler>();
+builder.Services.AddScoped<RemoveBrandCommandHandler>();
 
 var app = builder.Build();
 
