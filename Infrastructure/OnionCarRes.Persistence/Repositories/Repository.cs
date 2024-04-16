@@ -34,14 +34,16 @@ namespace OnionCarRes.Persistence.Repositories
             return await _context.Set<T>().FindAsync(id);
         }
 
-        public Task RemoveAsync(T entity)
+        public async Task RemoveAsync(T entity)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public Task UpdateAsync(T entity)
+        public async Task UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().Update(entity);
+            await _context.SaveChangesAsync();
         }
     }
 
