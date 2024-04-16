@@ -9,7 +9,7 @@ namespace OnionCarRes.Application
     public  interface IRepository<T> where T : class
     {
         Task<List<T>> GetAllAsync();
-        Task<T> GetByIdAsync();
+        Task<T> GetByIdAsync(int ıd);
         Task CreateAsync(T entity);
         Task UpdateAsync(T entity);
         Task RemoveAsync(T entity);
