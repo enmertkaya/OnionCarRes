@@ -15,7 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnionCarRes.WebApi", "Presentation\OnionCarRes.WebApi\OnionCarRes.WebApi.csproj", "{62B1DC9F-C5C8-44DE-A230-4DE3B6B832B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionCarRes.Application", "Core\OnionCarRes.Application\OnionCarRes.Application.csproj", "{8F68448C-A869-4C66-ACB9-5257706B25FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnionCarRes.Application", "Core\OnionCarRes.Application\OnionCarRes.Application.csproj", "{8F68448C-A869-4C66-ACB9-5257706B25FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontends", "Frontends", "{7C2AA481-2CCC-4A67-9638-E1DF1BD5CFF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionCarRes.WebUI", "Frontends\OnionCarRes.WebUI\OnionCarRes.WebUI.csproj", "{7792195F-34C3-4CE8-92B1-CEE58C603EBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,10 @@ Global
 		{8F68448C-A869-4C66-ACB9-5257706B25FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F68448C-A869-4C66-ACB9-5257706B25FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F68448C-A869-4C66-ACB9-5257706B25FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7792195F-34C3-4CE8-92B1-CEE58C603EBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7792195F-34C3-4CE8-92B1-CEE58C603EBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7792195F-34C3-4CE8-92B1-CEE58C603EBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7792195F-34C3-4CE8-92B1-CEE58C603EBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +56,7 @@ Global
 		{C7546D3F-9384-4B1C-8686-EB3800E08965} = {42A8E74B-BC17-4872-B90A-3DCC214C5305}
 		{62B1DC9F-C5C8-44DE-A230-4DE3B6B832B9} = {A54C16AA-4696-4799-97AF-869FF4810389}
 		{8F68448C-A869-4C66-ACB9-5257706B25FA} = {034B063A-47FE-45F6-92FD-6D5CBCD9286B}
+		{7792195F-34C3-4CE8-92B1-CEE58C603EBB} = {7C2AA481-2CCC-4A67-9638-E1DF1BD5CFF3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BD8E67BA-28AC-48B3-9324-EC06DAE8E8BA}
