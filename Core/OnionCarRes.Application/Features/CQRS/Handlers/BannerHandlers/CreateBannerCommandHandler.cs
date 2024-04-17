@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using OnionCarRes.Application.Features.CQRS.Commands.AboutCommands;
 using OnionCarRes.Application.Features.CQRS.Commands.BannerCommands;
-using OnionCarRes.Application;
 using OnionCarRes.Domain.Entities;
+using OnionCarRes.Application.Interfaces;
 
 namespace OnionCarRes.Application.Features.CQRS.Handlers.BannerHandlers
 {

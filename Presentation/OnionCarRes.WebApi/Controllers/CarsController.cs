@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using OnionCarRes.Application.Features.CQRS.Commands.BrandCommands;
 using OnionCarRes.Application.Features.CQRS.Commands.CarCommands;
-using OnionCarRes.Application.Features.CQRS.Handlers.BrandHandlers;
 using OnionCarRes.Application.Features.CQRS.Handlers.CarHandlers;
-using OnionCarRes.Application.Features.CQRS.Queries.BrandQueries;
 using OnionCarRes.Application.Features.CQRS.Queries.CarQueries;
+using OnionCarRes.Application.Features.CQRS.Commands.CarCommands;
+using OnionCarRes.Application.Features.CQRS.Handlers.CarHandlers;
+using OnionCarRes.Application.Features.CQRS.Queries.CarQueries;
+using OnionCarRes.Application.Features.CQRS.Results.CarResults;
 
 namespace OnionCarRes.WebApi.Controllers
 {
@@ -14,28 +16,32 @@ namespace OnionCarRes.WebApi.Controllers
     public class CarsController : ControllerBase
     {
         private readonly CreateCarCommandHandler _createCarCommandHandler;
-        private readonly UpdateCarCommandHandler _updateCarCommandHandler;
-        private readonly RemoveCarCommandHandler _removeCarCommandHandler;
         private readonly GetCarByIdQueryHandler _getCarByIdQueryHandler;
         private readonly GetCarQueryHandler _getCarQueryHandler;
+        private readonly UpdateCarCommandHandler _updateCarCommandHandler;
+        private readonly RemoveCarCommandHandler _removeCarCommandHandler;
+        private readonly GetCarWithBrandQueryHandler _getCarWithBrandQueryHandler;
 
-        public CarsController(CreateCarCommandHandler createCommandHandler, UpdateCarCommandHandler updateCommandHandler, RemoveCarCommandHandler removeCommandHandler, GetCarByIdQueryHandler getCarByIdQueryHandler, GetCarQueryHandler getCarQueryHandler)
+        public CarsController(CreateCarCommandHandler createCarCommandHandler, GetCarByIdQueryHandler getCarByIdQueryHandler, GetCarQueryHandler getCarQueryHandler, UpdateCarCommandHandler updateCarCommandHandler, RemoveCarCommandHandler removeCarCommandHandler, GetCarWithBrandQueryHandler getCarWithBrandQueryHandler)
         {
-            _createCarCommandHandler = createCommandHandler;
-            _updateCarCommandHandler = updateCommandHandler;
-            _removeCarCommandHandler = removeCommandHandler;
+            _createCarCommandHandler = createCarCommandHandler;
             _getCarByIdQueryHandler = getCarByIdQueryHandler;
             _getCarQueryHandler = getCarQueryHandler;
+            _updateCarCommandHandler = updateCarCommandHandler;
+            _removeCarCommandHandler = removeCarCommandHandler;
+            _getCarWithBrandQueryHandler = getCarWithBrandQueryHandler;
+
         }
+
         [HttpGet]
-        public async Task<IActionResult> BrandList()
+        public async Task<IActionResult> CarList()
         {
             var values = await _getCarQueryHandler.Handle();
             return Ok(values);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetBrand(int id)
+        public async Task<IActionResult> GetCar(int id)
         {
             var value = await _getCarByIdQueryHandler.Handle(new GetCarByIdQuery(id));
             return Ok(value);
@@ -45,21 +51,32 @@ namespace OnionCarRes.WebApi.Controllers
         public async Task<IActionResult> CreateCar(CreateCarCommand command)
         {
             await _createCarCommandHandler.Handle(command);
-            return Ok("Marka Bilgisi Eklendi");
+            return Ok("Araba Bilgisi Eklendi");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveCar(int id)
         {
             await _removeCarCommandHandler.Handle(new RemoveCarCommand(id));
-            return Ok("Marka Bilgisi Silindi");
+            return Ok("Araba Bilgisi Silindi");
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateCar(UpdateCarCommand command)
         {
             await _updateCarCommandHandler.Handle(command);
-            return Ok("Marka Bilgisi Güncellendi");
+            return Ok("Araba Bilgisi Güncellendi");
         }
+        [HttpGet("GetCarWithBrand")]
+        public IActionResult GetCarWithBrand()
+        {
+            var values = _getCarWithBrandQueryHandler.Handle();
+            return Ok(values);
+        }
+
+        
+
+
+
     }
 }

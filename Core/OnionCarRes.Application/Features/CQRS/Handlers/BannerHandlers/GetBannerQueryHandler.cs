@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OnionCarRes.Application.Features.CQRS.Results.BannerResults;
-using OnionCarRes.Application;
 using OnionCarRes.Domain.Entities;
+using OnionCarRes.Application.Interfaces;
 
 namespace OnionCarRes.Application.Features.CQRS.Handlers.BannerHandlers
 {

@@ -1,10 +1,14 @@
-using OnionCarRes.Application;
 using OnionCarRes.Application.Features.CQRS.Handlers.AboutHandlers;
 using OnionCarRes.Application.Features.CQRS.Handlers.BannerHandlers;
 using OnionCarRes.Application.Features.CQRS.Handlers.BrandHandlers;
 using OnionCarRes.Application.Features.CQRS.Handlers.CarHandlers;
+using OnionCarRes.Application.Features.CQRS.Handlers.CategoryHandlers;
+using OnionCarRes.Application.Features.CQRS.Handlers.ContactHandlers;
+using OnionCarRes.Application.Interfaces;
+using OnionCarRes.Application.Interfaces.CarInterfaces;
 using OnionCarRes.Persistence.Context;
 using OnionCarRes.Persistence.Repositories;
+using OnionCarRes.Persistence.Repositories.CarRepositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +21,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
 
 builder.Services.AddScoped<GetAboutQueryHandler>();
 builder.Services.AddScoped<GetAboutByIdQueryHandler>();
@@ -38,9 +43,22 @@ builder.Services.AddScoped<RemoveBrandCommandHandler>();
 
 builder.Services.AddScoped<GetCarQueryHandler>();
 builder.Services.AddScoped<GetCarByIdQueryHandler>();
+builder.Services.AddScoped<GetCarWithBrandQueryHandler>();
 builder.Services.AddScoped<CreateCarCommandHandler>();
 builder.Services.AddScoped<UpdateCarCommandHandler>();
 builder.Services.AddScoped<RemoveCarCommandHandler>();
+
+builder.Services.AddScoped<GetCategoryQueryHandler>();
+builder.Services.AddScoped<GetCategoryByIdQueryHandler>();
+builder.Services.AddScoped<CreateCategoryCommandHandler>();
+builder.Services.AddScoped<UpdateCategoryCommandHandler>();
+builder.Services.AddScoped<RemoveCategoryCommandHandler>();
+
+builder.Services.AddScoped<GetContactQueryHandler>();
+builder.Services.AddScoped<GetContactByIdQueryHandler>();
+builder.Services.AddScoped<CreateContactCommandHandler>();
+builder.Services.AddScoped<UpdateContactCommandHandler>();
+builder.Services.AddScoped<RemoveContactCommandHandler>();
 
 
 var app = builder.Build();

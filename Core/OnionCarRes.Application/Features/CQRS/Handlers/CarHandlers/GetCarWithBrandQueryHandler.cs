@@ -3,25 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using OnionCarRes.Application.Features.CQRS.Results.BrandResults;
 using OnionCarRes.Application.Features.CQRS.Results.CarResults;
-using OnionCarRes.Domain.Entities;
 using OnionCarRes.Application.Interfaces;
+using OnionCarRes.Application.Interfaces.CarInterfaces;
+using OnionCarRes.Domain.Entities;
 
 namespace OnionCarRes.Application.Features.CQRS.Handlers.CarHandlers
 {
-    public class GetCarQueryHandler
+    public class GetCarWithBrandQueryHandler
     {
-        private readonly IRepository<Car> _repository;
-        public GetCarQueryHandler(IRepository<Car> repository)
+        private readonly ICarRepository _repository;
+
+        public GetCarWithBrandQueryHandler(ICarRepository repository)
         {
             _repository = repository;
         }
-        public async Task<List<GetCarQueryResult>> Handle()
+        public List<GetCarWithBrandQueryResult> Handle()
         {
-            var values = await _repository.GetAllAsync();
-            return values.Select(x => new GetCarQueryResult
+            var values = _repository.GetCarsListWithBrands();
+            return values.Select(x => new GetCarWithBrandQueryResult
             {
+                BrandName = x.Brand.Name,
                 BrandID = x.BrandID,
                 BigImageUrl = x.BigImageUrl,
                 CarID = x.CarID,

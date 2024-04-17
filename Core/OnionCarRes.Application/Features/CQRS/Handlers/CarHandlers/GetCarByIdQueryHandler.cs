@@ -7,8 +7,8 @@ using OnionCarRes.Application.Features.CQRS.Queries.BrandQueries;
 using OnionCarRes.Application.Features.CQRS.Queries.CarQueries;
 using OnionCarRes.Application.Features.CQRS.Results.BrandResults;
 using OnionCarRes.Application.Features.CQRS.Results.CarResults;
-using OnionCarRes.Application;
 using OnionCarRes.Domain.Entities;
+using OnionCarRes.Application.Interfaces;
 
 namespace OnionCarRes.Application.Features.CQRS.Handlers.CarHandlers
 {

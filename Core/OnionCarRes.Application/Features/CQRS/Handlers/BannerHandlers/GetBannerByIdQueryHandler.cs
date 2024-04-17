@@ -7,8 +7,8 @@ using OnionCarRes.Application.Features.CQRS.Queries.AboutQueries;
 using OnionCarRes.Application.Features.CQRS.Queries.BannerQueries;
 using OnionCarRes.Application.Features.CQRS.Results.AboutResults;
 using OnionCarRes.Application.Features.CQRS.Results.BannerResults;
-using OnionCarRes.Application;
 using OnionCarRes.Domain.Entities;
+using OnionCarRes.Application.Interfaces;
 
 namespace OnionCarRes.Application.Features.CQRS.Handlers.BannerHandlers
 {

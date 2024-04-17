@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using OnionCarRes.Application.Features.CQRS.Commands.BrandCommands;
 using OnionCarRes.Application.Features.CQRS.Commands.CarCommands;
-using OnionCarRes.Application;
 using OnionCarRes.Domain.Entities;
+using OnionCarRes.Application.Interfaces;
 
 namespace OnionCarRes.Application.Features.CQRS.Handlers.CarHandlers
 {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnionCarRes.Application
+namespace OnionCarRes.Application.Interfaces
 {
-    public  interface IRepository<T> where T : class
+    public interface IRepository<T> where T : class
     {
         Task<List<T>> GetAllAsync();
         Task<T> GetByIdAsync(int ıd);
