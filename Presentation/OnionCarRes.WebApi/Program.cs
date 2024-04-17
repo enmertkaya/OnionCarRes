@@ -9,7 +9,7 @@ using OnionCarRes.Application.Interfaces.CarInterfaces;
 using OnionCarRes.Persistence.Context;
 using OnionCarRes.Persistence.Repositories;
 using OnionCarRes.Persistence.Repositories.CarRepositories;
-
+using OnionCarRes.Application.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -59,6 +59,9 @@ builder.Services.AddScoped<GetContactByIdQueryHandler>();
 builder.Services.AddScoped<CreateContactCommandHandler>();
 builder.Services.AddScoped<UpdateContactCommandHandler>();
 builder.Services.AddScoped<RemoveContactCommandHandler>();
+
+builder.Services.AddApplicationService(builder.Configuration);
+
 
 
 var app = builder.Build();
