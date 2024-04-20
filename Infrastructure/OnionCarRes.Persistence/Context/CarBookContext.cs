@@ -15,6 +15,7 @@ namespace OnionCarRes.Persistence.Context
             optionsBuilder.UseSqlServer("Server=DESKTOP-SAKEGUU\\MSSQLSERVER03;initial Catalog=UdemyCarBookDb;integrated Security=true;TrustServerCertificate=true;");
         }
         public DbSet<About> Abouts { get; set; }
+        public DbSet<Author> Authors { get; set; }
         public DbSet<Banner> Banners { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Car> Cars { get; set; }
@@ -30,7 +31,7 @@ namespace OnionCarRes.Persistence.Context
         public DbSet<Service> Services { get; set; }
         public DbSet<SocialMedia> SocialMedias { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
-        //public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
         //public DbSet<TagCloud> TagClouds { get; set; }
         //public DbSet<Comment> Comments { get; set; }
         //public DbSet<RentACar> RentACars { get; set; }

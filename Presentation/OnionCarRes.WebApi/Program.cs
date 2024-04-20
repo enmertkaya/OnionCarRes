@@ -10,6 +10,8 @@ using OnionCarRes.Persistence.Context;
 using OnionCarRes.Persistence.Repositories;
 using OnionCarRes.Persistence.Repositories.CarRepositories;
 using OnionCarRes.Application.Services;
+using OnionCarRes.Application.Interfaces.BlogInterfaces;
+using OnionCarRes.Persistence.Repositories.BlogRepositories;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,6 +24,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
+builder.Services.AddScoped(typeof(IBlogRepository), typeof(BlogRepository));
 
 builder.Services.AddScoped<GetAboutQueryHandler>();
 builder.Services.AddScoped<GetAboutByIdQueryHandler>();
