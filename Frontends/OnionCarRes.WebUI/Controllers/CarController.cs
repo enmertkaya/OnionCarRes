@@ -13,7 +13,8 @@ namespace OnionCarRes.WebUI.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            
+            ViewBag.v1 = "Araçlaımız";
+            ViewBag.v2 = "Güncel Araçlar";
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:7063/api/Cars/GetCarWithBrand");
             if (responseMessage.IsSuccessStatusCode)
