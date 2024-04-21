@@ -11,10 +11,11 @@ namespace OnionCarRes.WebUI.ViewComponents.BlogViewComponents
         {
             _httpClientFactory = httpClientFactory;
         }
+
         public async Task<IViewComponentResult> InvokeAsync(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7063/api/Blogs/" + id);
+            var responseMessage = await client.GetAsync("https://localhost:7063/api/Blogs/" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();

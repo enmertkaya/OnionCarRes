@@ -14,6 +14,8 @@ using OnionCarRes.Application.Interfaces.BlogInterfaces;
 using OnionCarRes.Persistence.Repositories.BlogRepositories;
 using OnionCarRes.Application.Interfaces.CarPricingInterfaces;
 using OnionCarRes.Persistence.Repositories.CarPricingRepositories;
+using OnionCarRes.Application.Interfaces.TagCloudInterfaces;
+using OnionCarRes.Persistence.Repositories.TagCloudRepositories;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -28,6 +30,7 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
 builder.Services.AddScoped(typeof(IBlogRepository), typeof(BlogRepository));
 builder.Services.AddScoped(typeof(ICarPricingRepository), typeof(CarPricingRepository));
+builder.Services.AddScoped(typeof(ITagCloudRepository), typeof(TagCloudRepository));
 
 builder.Services.AddScoped<GetAboutQueryHandler>();
 builder.Services.AddScoped<GetAboutByIdQueryHandler>();

@@ -1,22 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using OnionCarRes.Dto.AuthorDtos;
+using OnionCarRes.Dto.BlogDtos;
 using OnionCarRes.Dto.TagCloudDtos;
 
 namespace OnionCarRes.WebUI.ViewComponents.BlogViewComponents
 {
-    public class _BlogDetailsAuthorAboutComponentPartial : ViewComponent
+    public class _BlogDetailCloudTagByBlogComponentPartial:ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        public _BlogDetailsAuthorAboutComponentPartial(IHttpClientFactory httpClientFactory)
+        public _BlogDetailCloudTagByBlogComponentPartial(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
         public IViewComponentResult Invoke()
         {
-
+            
             return View();
         }
-    
     }
 }

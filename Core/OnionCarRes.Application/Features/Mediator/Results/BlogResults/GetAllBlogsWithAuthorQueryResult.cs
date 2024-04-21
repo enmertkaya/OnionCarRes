@@ -14,7 +14,6 @@ namespace OnionCarRes.Application.Features.Mediator.Results.BlogResults
         public string AuthorName { get; set; }
         public string AuthorDescription { get; set; }
         public string AuthorImageUrl { get; set; }
-        public string CategoryName { get; set; }
         public int AuthorID { get; set; }
         public string CoverImageUrl { get; set; }
         public DateTime CreatedDate { get; set; }

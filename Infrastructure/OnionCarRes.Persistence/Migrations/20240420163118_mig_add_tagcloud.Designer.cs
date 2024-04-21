@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnionCarRes.Persistence.Context;
 
@@ -11,9 +12,11 @@ using OnionCarRes.Persistence.Context;
 namespace OnionCarRes.Persistence.Migrations
 {
     [DbContext(typeof(CarBookContext))]
-    partial class CarBookContextModelSnapshot : ModelSnapshot
+    [Migration("20240420163118_mig_add_tagcloud")]
+    partial class mig_add_tagcloud
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -292,39 +295,6 @@ namespace OnionCarRes.Persistence.Migrations
                     b.HasKey("CategoryID");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("OnionCarRes.Domain.Entities.Comment", b =>
-                {
-                    b.Property<int>("CommentID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentID"));
-
-                    b.Property<int>("BlogID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CommentID");
-
-                    b.HasIndex("BlogID");
-
-                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("OnionCarRes.Domain.Entities.Contact", b =>
@@ -619,17 +589,6 @@ namespace OnionCarRes.Persistence.Migrations
                     b.Navigation("Pricing");
                 });
 
-            modelBuilder.Entity("OnionCarRes.Domain.Entities.Comment", b =>
-                {
-                    b.HasOne("OnionCarRes.Domain.Entities.Blog", "Blog")
-                        .WithMany("Comments")
-                        .HasForeignKey("BlogID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Blog");
-                });
-
             modelBuilder.Entity("OnionCarRes.Domain.Entities.TagCloud", b =>
                 {
                     b.HasOne("OnionCarRes.Domain.Entities.Blog", "Blog")
@@ -648,8 +607,6 @@ namespace OnionCarRes.Persistence.Migrations
 
             modelBuilder.Entity("OnionCarRes.Domain.Entities.Blog", b =>
                 {
-                    b.Navigation("Comments");
-
                     b.Navigation("TagClouds");
                 });
 
