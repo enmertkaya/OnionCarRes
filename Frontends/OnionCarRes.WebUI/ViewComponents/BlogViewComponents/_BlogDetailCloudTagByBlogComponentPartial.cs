@@ -12,9 +12,17 @@ namespace OnionCarRes.WebUI.ViewComponents.BlogViewComponents
         {
             _httpClientFactory = httpClientFactory;
         }
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync(int id)
         {
-            
+            ViewBag.blogid = id;
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"https://localhost:7063/api/TagClouds/GetTagClodByBlogId?id=" + id);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<List<GetByBlogIdTagCloudDto>>(jsonData);
+                return View(values);
+            }
             return View();
         }
     }
