@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnionCarRes.Persistence.Context;
 
@@ -11,9 +12,11 @@ using OnionCarRes.Persistence.Context;
 namespace OnionCarRes.Persistence.Migrations
 {
     [DbContext(typeof(CarBookContext))]
-    partial class CarBookContextModelSnapshot : ModelSnapshot
+    [Migration("20240424163930_mig_add_relation_location_reservation")]
+    partial class mig_add_relation_location_reservation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -814,7 +817,7 @@ namespace OnionCarRes.Persistence.Migrations
             modelBuilder.Entity("OnionCarRes.Domain.Entities.RentACarProcess", b =>
                 {
                     b.HasOne("OnionCarRes.Domain.Entities.Car", "Car")
-                        .WithMany("RentACarProcesses")
+                        .WithMany()
                         .HasForeignKey("CarID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -833,7 +836,7 @@ namespace OnionCarRes.Persistence.Migrations
             modelBuilder.Entity("OnionCarRes.Domain.Entities.Reservation", b =>
                 {
                     b.HasOne("OnionCarRes.Domain.Entities.Car", "Car")
-                        .WithMany("Reservations")
+                        .WithMany()
                         .HasForeignKey("CarID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -891,11 +894,7 @@ namespace OnionCarRes.Persistence.Migrations
 
                     b.Navigation("CarPricings");
 
-                    b.Navigation("RentACarProcesses");
-
                     b.Navigation("RentACars");
-
-                    b.Navigation("Reservations");
                 });
 
             modelBuilder.Entity("OnionCarRes.Domain.Entities.Category", b =>
