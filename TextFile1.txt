@@ -1,0 +1,14 @@
+-->Pivot Tabloda Birlestirme Ýslemi
+Select * From 
+(
+Select Model,PricingID , Amount
+From CarPricings
+Inner Join Cars
+on Cars.CarID=CarPricings.CarID
+Inner Join Brands
+On Brands.BrandID=Cars.BrandID
+)
+As SourceTable
+Pivot (
+Sum(Amount) For PricingID in ([1],[2],[3])
+) as PivotTable

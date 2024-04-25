@@ -21,7 +21,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontends", "Frontends", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnionCarRes.WebUI", "Frontends\OnionCarRes.WebUI\OnionCarRes.WebUI.csproj", "{7792195F-34C3-4CE8-92B1-CEE58C603EBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionCarRes.Dto", "Frontends\OnionCarRes.Dto\OnionCarRes.Dto.csproj", "{D3E18DA1-CB69-41FC-8331-7132045B3144}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnionCarRes.Dto", "Frontends\OnionCarRes.Dto\OnionCarRes.Dto.csproj", "{D3E18DA1-CB69-41FC-8331-7132045B3144}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ToDoList", "ToDoList", "{18924B05-BF9E-4542-807B-6C85AE39B104}"
+	ProjectSection(SolutionItems) = preProject
+		TextFile1.txt = TextFile1.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
