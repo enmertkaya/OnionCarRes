@@ -6,6 +6,8 @@ using OnionCarRes.Application.Features.CQRS.Handlers.CategoryHandlers;
 using OnionCarRes.Application.Features.CQRS.Handlers.ContactHandlers;
 using OnionCarRes.Application.Interfaces;
 using OnionCarRes.Application.Interfaces.CarInterfaces;
+using OnionCarRes.Application.Interfaces.CarFeatureInterfaces;
+using OnionCarRes.Persistence.Repositories.CarFeatureRepositories;
 using OnionCarRes.Persistence.Context;
 using OnionCarRes.Persistence.Repositories;
 using OnionCarRes.Persistence.Repositories.CarRepositories;
@@ -43,6 +45,8 @@ builder.Services.AddScoped(typeof(ITagCloudRepository), typeof(TagCloudRepositor
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(CommentRepository<>));
 builder.Services.AddScoped(typeof(IRentACarRepository), typeof(RentACarRepository));
 builder.Services.AddScoped(typeof(IStatisticsRepository), typeof(StatisticsRepository));
+builder.Services.AddScoped(typeof(ICarFeatureRepository), typeof(CarFeatureRepository));
+
 
 
 builder.Services.AddScoped<GetAboutQueryHandler>();
