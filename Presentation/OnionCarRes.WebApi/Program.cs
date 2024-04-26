@@ -26,6 +26,16 @@ using OnionCarRes.Application.Interfaces.RentACarInterfaces;
 using OnionCarRes.Persistence.Repositories.RentACarRepositories;
 using OnionCarRes.Application.Interfaces.CarDescriptionInterfaces;
 using OnionCarRes.Persistence.Repositories.CarDescriptionRepositories;
+using OnionCarRes.Application.Interfaces.ReviewInterfaces;
+using OnionCarRes.Persistence.Repositories.ReviewRepositories;
+using OnionCarRes.Application.Interfaces.ReviewInterfaces;
+using OnionCarRes.Application.Validators.ReviewValidators;
+using OnionCarRes.Persistence.Repositories.ReviewRepositories;
+using FluentValidation.AspNetCore;
+using System.Reflection;
+
+
+
 
 
 
@@ -51,6 +61,8 @@ builder.Services.AddScoped(typeof(IRentACarRepository), typeof(RentACarRepositor
 builder.Services.AddScoped(typeof(IStatisticsRepository), typeof(StatisticsRepository));
 builder.Services.AddScoped(typeof(ICarFeatureRepository), typeof(CarFeatureRepository));
 builder.Services.AddScoped(typeof(ICarDescriptionRepository), typeof(CarDescriptionRepository));
+builder.Services.AddScoped(typeof(IReviewRepository), typeof(ReviewRepository));
+
 
 
 
@@ -95,7 +107,10 @@ builder.Services.AddScoped<RemoveContactCommandHandler>();
 
 builder.Services.AddApplicationService(builder.Configuration);
 
-
+builder.Services.AddControllers().AddFluentValidation(x =>
+{
+    x.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+});
 
 var app = builder.Build();
 
