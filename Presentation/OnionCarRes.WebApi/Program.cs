@@ -1,61 +1,57 @@
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using OnionCarRes.Application.Features.CQRS.Handlers.AboutHandlers;
 using OnionCarRes.Application.Features.CQRS.Handlers.BannerHandlers;
 using OnionCarRes.Application.Features.CQRS.Handlers.BrandHandlers;
 using OnionCarRes.Application.Features.CQRS.Handlers.CarHandlers;
 using OnionCarRes.Application.Features.CQRS.Handlers.CategoryHandlers;
 using OnionCarRes.Application.Features.CQRS.Handlers.ContactHandlers;
-using OnionCarRes.Application.Interfaces;
-using OnionCarRes.Application.Interfaces.CarInterfaces;
-using OnionCarRes.Application.Interfaces.CarFeatureInterfaces;
-using OnionCarRes.Persistence.Repositories.CarFeatureRepositories;
-using OnionCarRes.Persistence.Context;
-using OnionCarRes.Persistence.Repositories;
-using OnionCarRes.Persistence.Repositories.CarRepositories;
-using OnionCarRes.Application.Services;
-using OnionCarRes.Application.Interfaces.BlogInterfaces;
-using OnionCarRes.Persistence.Repositories.BlogRepositories;
-using OnionCarRes.Application.Interfaces.CarPricingInterfaces;
-using OnionCarRes.Persistence.Repositories.CarPricingRepositories;
-using OnionCarRes.Persistence.Repositories.CommentRepositories;
-using OnionCarRes.Application.Interfaces.TagCloudInterfaces;
-using OnionCarRes.Persistence.Repositories.TagCloudRepositories;
 using OnionCarRes.Application.Features.RepositoryPattern;
-using OnionCarRes.Application.Interfaces.StatisticsInterfaces;
-using OnionCarRes.Persistence.Repositories.StatisticsRepositories;
-using OnionCarRes.Application.Interfaces.RentACarInterfaces;
-using OnionCarRes.Persistence.Repositories.RentACarRepositories;
+using OnionCarRes.Application.Interfaces.BlogInterfaces;
 using OnionCarRes.Application.Interfaces.CarDescriptionInterfaces;
-using OnionCarRes.Persistence.Repositories.CarDescriptionRepositories;
+using OnionCarRes.Application.Interfaces.CarFeatureInterfaces;
+using OnionCarRes.Application.Interfaces.CarInterfaces;
+using OnionCarRes.Application.Interfaces.CarPricingInterfaces;
+using OnionCarRes.Application.Interfaces.RentACarInterfaces;
 using OnionCarRes.Application.Interfaces.ReviewInterfaces;
-using OnionCarRes.Persistence.Repositories.ReviewRepositories;
-using OnionCarRes.Application.Interfaces.ReviewInterfaces;
-using OnionCarRes.Application.Validators.ReviewValidators;
-using OnionCarRes.Persistence.Repositories.ReviewRepositories;
-using FluentValidation.AspNetCore;
-using System.Reflection;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using OnionCarRes.Application.Interfaces.StatisticsInterfaces;
+using OnionCarRes.Application.Interfaces.TagCloudInterfaces;
+using OnionCarRes.Application.Interfaces;
+using OnionCarRes.Application.Services;
 using OnionCarRes.Application.Tools;
-
-
-
-
-
-
-
+using OnionCarRes.Persistence.Context;
+using OnionCarRes.Persistence.Repositories.BlogRepositories;
+using OnionCarRes.Persistence.Repositories.CarDescriptionRepositories;
+using OnionCarRes.Persistence.Repositories.CarFeatureRepositories;
+using OnionCarRes.Persistence.Repositories.CarPricingRepositories;
+using OnionCarRes.Persistence.Repositories.CarRepositories;
+using OnionCarRes.Persistence.Repositories.CommentRepositories;
+using OnionCarRes.Persistence.Repositories.RentACarRepositories;
+using OnionCarRes.Persistence.Repositories.ReviewRepositories;
+using OnionCarRes.Persistence.Repositories.StatisticsRepositories;
+using OnionCarRes.Persistence.Repositories.TagCloudRepositories;
+using OnionCarRes.Persistence.Repositories;
+using OnionCarRes.WebApi.Hubs;
+using System.Reflection;
+using System.Text;
 
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHttpClient();
 
-// Add services to the container.
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyHeader()
+        .AllowAnyMethod()
+        .SetIsOriginAllowed((host) => true)
+        .AllowCredentials();
+    });
+});
+builder.Services.AddSignalR();
 
-builder.Services.AddControllers();
-builder.Services.AddScoped<CarBookContext>();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
 {
@@ -72,20 +68,20 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 
+#region Registirations
+// Add services to the container.
+builder.Services.AddScoped<CarBookContext>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
+builder.Services.AddScoped(typeof(IStatisticsRepository), typeof(StatisticsRepository));
 builder.Services.AddScoped(typeof(IBlogRepository), typeof(BlogRepository));
 builder.Services.AddScoped(typeof(ICarPricingRepository), typeof(CarPricingRepository));
 builder.Services.AddScoped(typeof(ITagCloudRepository), typeof(TagCloudRepository));
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(CommentRepository<>));
 builder.Services.AddScoped(typeof(IRentACarRepository), typeof(RentACarRepository));
-builder.Services.AddScoped(typeof(IStatisticsRepository), typeof(StatisticsRepository));
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(CommentRepository<>));
 builder.Services.AddScoped(typeof(ICarFeatureRepository), typeof(CarFeatureRepository));
 builder.Services.AddScoped(typeof(ICarDescriptionRepository), typeof(CarDescriptionRepository));
 builder.Services.AddScoped(typeof(IReviewRepository), typeof(ReviewRepository));
-
-
-
 
 
 builder.Services.AddScoped<GetAboutQueryHandler>();
@@ -108,11 +104,11 @@ builder.Services.AddScoped<RemoveBrandCommandHandler>();
 
 builder.Services.AddScoped<GetCarQueryHandler>();
 builder.Services.AddScoped<GetCarByIdQueryHandler>();
-builder.Services.AddScoped<GetCarWithBrandQueryHandler>();
-builder.Services.AddScoped<GetLast5CarsWithBrandQueryHandler>();
 builder.Services.AddScoped<CreateCarCommandHandler>();
 builder.Services.AddScoped<UpdateCarCommandHandler>();
 builder.Services.AddScoped<RemoveCarCommandHandler>();
+builder.Services.AddScoped<GetCarWithBrandQueryHandler>();
+builder.Services.AddScoped<GetLast5CarsWithBrandQueryHandler>();
 
 builder.Services.AddScoped<GetCategoryQueryHandler>();
 builder.Services.AddScoped<GetCategoryByIdQueryHandler>();
@@ -126,12 +122,18 @@ builder.Services.AddScoped<CreateContactCommandHandler>();
 builder.Services.AddScoped<UpdateContactCommandHandler>();
 builder.Services.AddScoped<RemoveContactCommandHandler>();
 
+#endregion
+
 builder.Services.AddApplicationService(builder.Configuration);
 
 builder.Services.AddControllers().AddFluentValidation(x =>
 {
     x.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 });
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -141,12 +143,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<CarHub>("/carhub");
 
 app.Run();
