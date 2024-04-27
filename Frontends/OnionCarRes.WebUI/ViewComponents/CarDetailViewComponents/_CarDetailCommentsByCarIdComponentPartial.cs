@@ -15,6 +15,7 @@ namespace OnionCarRes.WebUI.ViewComponents.CarDetailViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(int id)
         {
+           
             ViewBag.carid = id;
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:7063/api/Reviews?id=" + id);

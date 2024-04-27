@@ -39,7 +39,8 @@ namespace OnionCarRes.Persistence.Context
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<RentACarProcess> rentACarProcesses { get; set; }
-
+        public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<AppRole> AppRoles { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Reservation>()
