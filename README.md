@@ -8,3 +8,13 @@ Bu proje, CQRS, Mediator ve Repository Design Pattern gibi tasarım desenlerini 
 
 OnionCarRes, sadece araç kiralamakla kalmaz, aynı zamanda kullanıcıların bloglarını paylaşabilecekleri, yorum bırakabilecekleri ve yöneticilerin de kolayca yönetebileceği bir admin paneline sahiptir. Proje detaylarına aşşağıda bulunan görseller ve açıklamalar ile yer vereceğim.
 ![f1](https://github.com/enmertkaya/OnionCarRes/assets/151652097/f1ea1666-6b8a-4321-8bbc-00f14b0e0290)
+
+1) Bu sayfada filtreleme işlemi ile seçilen konumdan alınabilecek uygun araçlar listelenir.Örneğin Sabiha Gökçen Havalimanı ve tarih aralıkları girildiğinde o konumdan alamabilcek araçlar Uygun araçları listeleye basıldıktan sonra bu şekilde gösterilir.
+
+![f2](https://github.com/enmertkaya/OnionCarRes/assets/151652097/d41667f9-43d2-4d88-bc12-8dc74908454d)
+
+Sabiha Gökçen Havalimanına ait uygun araçlar : 
+![f2](https://github.com/enmertkaya/OnionCarRes/assets/151652097/ec449476-e65b-4bc8-9a14-2eefeaffefa5)
+
+Filtreleme değiştirilip Ankara-AŞTİ seçildiğinde ise tek aracın geldiği gözlenir.
+![Uploading f3.png…]()
