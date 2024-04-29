@@ -1,26 +1,49 @@
 ﻿@model List<ResultBannerDto>
 
-@foreach(var item in Model)
+@foreach (var item in Model)
 {
-<div class="hero-wrap ftco-degree-bg" style="background-image: url('/carbook-master/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
-            <div class="col-lg-8 ftco-animate">
-                <div class="text w-100 text-center mb-md-5 pb-md-5">
-                    <h1 class="mb-4">@item.Title</h1>
-                    <p style="font-size: 18px;">@item.Description</p>
-                    <a href="@item.VideoUrl" class="icon-wrap popup-vimeo d-flex align-items-center mt-4 justify-content-center">
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="ion-ios-play"></span>
+    <div class="hero-wrap ftco-degree-bg" style="background-image: url('/carbook-master/images/bug1.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
+                <div class="col-lg-8 ftco-animate">
+                    <div class="text w-100 text-center mb-md-5 pb-md-5">
+                        <p class="play-title" style="color: white; font-size: 24px; margin-bottom: 20px; font-weight: bold;">@item.Title</p>
+                        <div class="play-icon" onclick="playVideo()">
+                            <i class="ion-ios-play" style="font-size: 48px; color: green;"></i>
                         </div>
-                        <div class="heading-title ml-5">
-                            <span>@item.VideoDescription</span>
+                        <div id="video-container" style="display: none;">
+                            <button class="close-button" onclick="closeVideo()" style="font-size: 24px; background-color: red; color: white; border: none; padding: 5px 10px; border-radius: 50%; position: absolute; top: 10px; right: 10px;">X</button>
+                            <iframe id="videoFrame" width="560" height="315" frameborder="0" allowfullscreen></iframe>
                         </div>
-                    </a>
+                        <p class="play-description" style="color: white; font-weight: bold; margin-top: 10px;">@item.Description</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 }
+
+<script>
+    function playVideo() {
+        var videoContainer = document.getElementById('video-container');
+        var videoFrame = document.getElementById('videoFrame');
+
+        videoContainer.style.display = 'block';
+        videoFrame.src = 'https://www.youtube.com/embed/PkkV1vLHUvQ?autoplay=1&rel=0&showinfo=0';
+
+        var playIcon = document.querySelector('.play-icon');
+        playIcon.style.display = 'none';
+    }
+
+    function closeVideo() {
+        var videoContainer = document.getElementById('video-container');
+        var videoFrame = document.getElementById('videoFrame');
+
+        videoContainer.style.display = 'none';
+        videoFrame.src = '';
+
+        var playIcon = document.querySelector('.play-icon');
+        playIcon.style.display = 'block';
+    }
+</script>

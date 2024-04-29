@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace UdemyCarBook.WebUI.ViewComponents.UILayoutViewComponents
+namespace OnionCarRes.WebUI.ViewComponents.UILayoutViewComponents
 {
     public class _NavbarUILayoutComponentPartial:ViewComponent
     {
