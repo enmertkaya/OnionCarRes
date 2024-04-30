@@ -1,4 +1,4 @@
-OnionCarRes isimli projem, araç kiralama deneyimini kolaylaştıran yenilikçi bir çevrimiçi platformdur. C#, MsSQL ve Bootstrap gibi güçlü programlama dilleri ve teknolojileri kullanılarak geliştirilen bu platform, kullanıcıların araç kiralamalarını hızlı ve güvenilir bir şekilde gerçekleştirmelerini sağlar.
+OnionCarRes isimli projem, araç kiralama deneyimini kolaylaştıran yenilikçi bir çevrimiçi platformdur. C#, MsSQL, JavaScript ve Bootstrap gibi güçlü programlama dilleri ve teknolojileri kullanılarak geliştirilen bu platform, kullanıcıların araç kiralamalarını hızlı ve güvenilir bir şekilde gerçekleştirmelerini sağlar.
 
 Bu platformun temel amacı, kullanıcıların istedikleri aracı seçip kiralamalarını sağlamakla birlikte, araçları istedikleri lokasyonlara bırakarak işlemlerini tamamlamalarını da mümkün kılar. Kullanıcı dostu arayüzü sayesinde, araç kiralama süreci daha da kolaylaşır ve kullanıcılar rahatça istedikleri aracı bulup kiralamaya odaklanabilirler.
 
