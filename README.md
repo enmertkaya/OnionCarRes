@@ -58,6 +58,9 @@ Bu sayfaya ait bir yorum anında bırakılabilir.
 8)  Fiyatlar sayfamız.Bu sayfayı oluştururken pivot table'dan yararlanılmıştır. PivotTable, verilerinize ilişkin karşılaştırmaları, kalıpları ve eğilimleri görmek amacıyla verileri hesaplamanıza, özetlemenize ve analiz etmenize yönelik güçlü bir araçtır.
 
 ![f17](https://github.com/enmertkaya/OnionCarRes/assets/151652097/ea9d7d3c-c132-48dc-a2d9-2be14eb5cf83)
+![pT](https://github.com/enmertkaya/OnionCarRes/assets/151652097/515fc1d0-5f69-458b-b292-f26e1adf550f)
+
+
 
 9)  Arabalar sayfamızda , mevcut tüm araçlar bu şekilde listelenir.
 
